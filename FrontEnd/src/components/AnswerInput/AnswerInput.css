@@ -1,0 +1,46 @@
+.answer-input {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 30px;
+}
+
+.answer-input h4 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.answer-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 12px;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.answer-textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 30px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
