@@ -17,7 +17,8 @@
         <ul>
           <li>🎯 Il primo che entra diventa <strong>Sender</strong></li>
           <li>📥 Gli altri diventano <strong>Receiver</strong></li>
-          <li>🔗 Il Sender può condividere il link</li>
+          <li>📂 Il Sender carica un file</li>
+          <li>⬇️ I Receiver lo scaricano quando vogliono</li>
         </ul>
       </div>
 
@@ -55,7 +56,7 @@
 
       <!-- Sender view -->
       <div id="senderView" class="view hidden">
-        <h2>📤 Invia File</h2>
+        <h2>📤 Condividi File</h2>
         <input type="file" id="fileInput" style="display: none;">
         <label for="fileInput" class="btn-file">📁 Scegli File</label>
         
@@ -74,18 +75,28 @@
 
       <!-- Receiver view -->
       <div id="receiverView" class="view hidden">
-        <h2>📥 Ricevi File</h2>
+        <h2>📥 Scarica File</h2>
         
+        <!-- In attesa di file -->
         <div id="waiting" class="waiting">
           <div class="spinner"></div>
-          <p>⏳ In attesa di file...</p>
+          <p>⏳ In attesa che il sender carichi un file...</p>
         </div>
         
+        <!-- File disponibile per il download -->
+        <div id="fileAvailable" class="file-available hidden">
+          <div class="available-icon">📁</div>
+          <h3>File Disponibile!</h3>
+          <div id="availableFileInfo" class="file-info"></div>
+          <button id="requestDownloadBtn" class="btn-primary">⬇️ Scarica Ora</button>
+        </div>
+        
+        <!-- File ricevuto -->
         <div id="fileReceived" class="file-received hidden">
           <div class="success-icon">✅</div>
           <h3>File Ricevuto!</h3>
           <div id="receivedFileInfo" class="file-info"></div>
-          <button id="downloadBtn" class="btn-primary">💾 Scarica File</button>
+          <button id="downloadBtn" class="btn-primary">💾 Salva File</button>
         </div>
       </div>
 
