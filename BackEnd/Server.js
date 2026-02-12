@@ -10,6 +10,9 @@ const io = new Server(httpServer);
 // Dice a node di servire i file statici presenti nella cartella public
 app.use(express.static(join(__dirname,'../FrontEnd')));
 
+
+//questa funzione serve a rilevare l'indirizzo ip del server aggiunta per comodità, se si publica il server
+//bisogna cambiarne la logica facendo in modo che restituisca il dominio del server
 function getLocalIPAddress() {
     const interfaces = os.networkInterfaces();
     
@@ -56,9 +59,10 @@ io.on('connection',(socket)=>{
         }else{
             console.log("il client ${clientId} è RECEIVER");
         }
-        //Crea il messaggio da mandare inviare
+        //aggiorna il ruolo 
         socket.data.role = role;
         const roomData = rooms.get(room);
+        //aggiunge il peer alla stanza
         roomData.members.push({
             socketId: socket.id,
             clientId: clientId,
@@ -74,6 +78,7 @@ io.on('connection',(socket)=>{
             serverIP: LOCAL_IP,      
             serverPort: PORT   
         });
+        //Dice ai peer connessi alla stanza che un nuovo peer è entrato
         socket.to(room).emit('peer-joined',{
             peerId: clientId,
             socketId: socket.id,
@@ -91,9 +96,9 @@ io.on('connection',(socket)=>{
         io.to(to).emit('answer', {answer, from: socket.id, fromClientId: from});
     });
 
-    //inoltra l'icecandidata
+    //inoltra l'icecandidate
     socket.on('ice-candidate',()=>{
-        io.to(to).emit('ice-candidate',{candidat, from: socket.id, fromClient: from});
+        io.to(to).emit('ice-candidate',{candidate, from: socket.id, fromClient: from});
     });
 
     //Fornisce informazioni sui peer connessi
