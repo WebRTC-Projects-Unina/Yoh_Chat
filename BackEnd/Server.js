@@ -97,7 +97,7 @@ io.on('connection',(socket)=>{
     });
 
     //inoltra l'icecandidate
-    socket.on('ice-candidate',()=>{
+    socket.on('ice-candidate',({candidate, to, from })=>{
         io.to(to).emit('ice-candidate',{candidate, from: socket.id, fromClient: from});
     });
 
@@ -105,6 +105,7 @@ io.on('connection',(socket)=>{
     socket.on('get-peers',(callback)=>{
         const room = socket.data.room;
         if(room&&rooms.has(room)){
+          const roomData = rooms.get(room);
           const peers = roomData.members
           .filter(m=>m.socketId !== socket.id)
           .map(m => ({
